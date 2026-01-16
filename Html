@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUNIVO CAFE | رونيفو كافيه - ادلب/أريحا</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8B4513;
+            --secondary: #D2691E;
+            --accent: #A52A2A;
+            --light: #F5DEB3;
+            --dark: #3C2A21;
+            --gold: #D4AF37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f8f5f0;
+            color: var(--dark);
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gold);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav a:hover, .nav a.active {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        .admin-btn {
+            background: #dc3545;
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 25px;
+        }
+
+        .admin-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(60, 42, 33, 0.85), rgba(139, 69, 19, 0.85));
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        /* Menu Categories */
+        .categories {
+            display: flex;
+            gap: 10px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .category-btn {
+            padding: 12px 25px;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            color: var(--primary);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-btn.active, .category-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .item-image {
+            height: 200px;
+            background-color: var(--light);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .item-content {
+            padding: 20px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .item-name {
+            font-size: 1.4rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .item-price {
+            font-size: 1.6rem;
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .item-flavors {
+            background: var(--light);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            color: var(--dark);
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        /* Branches Section */
+        .branches {
+            background: white;
+            padding: 60px 0;
+            margin: 50px 0;
+            border-radius: 15px;
+        }
+
+        .branches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .branch-card {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-right: 5px solid var(--primary);
+        }
+
+        .branch-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Sections */
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .section-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .section-card:hover {
+            transform: scale(1.05);
+        }
+
+        .section-card.women {
+            border-top: 5px solid #FF69B4;
+        }
+
+        .section-card.family {
+            border-top: 5px solid #32CD32;
+        }
+
+        .section-card.youth {
+            border-top: 5px solid #1E90FF;
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Reservation Form */
+        .reservation-form {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 50px auto;
+            max-width: 800px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(139, 69, 19, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 20px;
+            }
+            
+            .nav.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 25px;
+                left: 20px;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .categories {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Panel Link -->
+    <div style="position: fixed; bottom: 20px; left: 20px; z-index: 9999;">
+        <a href="admin.html" style="background: #dc3545; color: white; padding: 10px 15px; border-radius: 50%; text-decoration: none;">
+            <i class="fas fa-cog"></i>
+        </a>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <a href="#" class="logo">
+                    <i class="fas fa-mug-hot"></i>
+                    RUNIVO CAFE
+                </a>
+                
+                <nav class="nav" id="mainNav">
+                    <a href="#home" class="active">الرئيسية</a>
+                    <a href="#branches">فروعنا</a>
+                    <a href="#menu">قائمتنا</a>
+                    <a href="#sections">الأقسام</a>
+                    <a href="#reservation">الحجوزات</a>
+                    <a href="admin.html" class="admin-btn">لوحة التحكم</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>مرحباً بكم في رونيفو كافيه</h1>
+            <p>وجهتكم المفضلة للمشروبات الساخنة والباردة، الأرجيلة، الحلويات وأجواء الاسترخاء في ادلب/أريحا</p>
+            <a href="#reservation" class="submit-btn" style="display: inline-block; width: auto; padding: 12px 30px;">احجز طاولتك الآن</a>
+        </div>
+    </section>
+
+    <!-- Branches -->
+    <section class="branches" id="branches">
+        <div class="container">
+            <h2 style="text-align: center; color: var(--primary); margin-bottom: 30px;">فروعنا</h2>
+            <div class="branches-grid">
+                <div class="branch-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> الفرع الأول</h3>
+                    <p><strong>الموقع:</strong> ادلب / اريحا - تحت جسر الحديد</p>
+                    <p><strong>ساعات العمل:</strong>اعلى مدار الساعة</p>
+                    <p><strong>واتساب:</strong>+12268778829</p>
+                </div>
+                
+                <div class="branch-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> الفرع الثاني</h3>
+                    <p><strong>الموقع:</strong> ادلب / اريحا - طريق ال M4، بعد كازية الفاعور</p>
+                    <p><strong>ساعات العمل:</strong> على مدار الساعة</p>
+                    <p><strong>واتساب:</strong>+12268778829</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="container">
+        <h2 style="text-align: center; color: var(--primary); margin: 50px 0 30px;">قائمتنا</h2>
+        
+        <!-- Categories -->
+        <div class="categories">
+            <button class="category-btn active" data-category="all">
+                <i class="fas fa-utensils"></i> الكل
+            </button>
+            <button class="category-btn" data-category="cold">
+                <i class="fas fa-glass-whiskey"></i> المشروبات الباردة
+            </button>
+            <button class="category-btn" data-category="hot">
+                <i class="fas fa-mug-hot"></i> المشروبات الساخنة
+            </button>
+            <button class="category-btn" data-category="desserts">
+                <i class="fas fa-birthday-cake"></i> الحلويات
+            </button>
+            <button class="category-btn" data-category="milkshake">
+                <i class="fas fa-blender"></i> الميلك شيك
+            </button>
+            <button class="category-btn" data-category="cocktails">
+                <i class="fas fa-cocktail"></i> الكوكتيلات
+            </button>
+            <button class="category-btn" data-category="argila">
+                <i class="fas fa-smoking"></i> الأرجيلة
+            </button>
+        </div>
+
+        <!-- Menu Items Container -->
+        <div id="menuContainer" class="menu-grid">
+            <!-- Items will be loaded by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Sections -->
+    <section id="sections" class="container">
+        <h2 style="text-align: center; color: var(--primary); margin: 80px 0 40px;">أقسام الحجز</h2>
+        
+        <div class="sections-grid">
+            <div class="section-card women">
+                <div class="section-icon">
+                    <i class="fas fa-female"></i>
+                </div>
+                <h3>قسم النساء</h3>
+                <p>مساحة خاصة ومريحة للنساء</p>
+                <p>ديكور أنيق وخدمة متميزة</p>
+            </div>
+            
+            <div class="section-card family">
+                <div class="section-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3>قسم العائلات</h3>
+                <p>مساحات واسعة تناسب العائلات</p>
+                <p>مقاعد مريحة لجميع الأعمار</p>
+            </div>
+            
+            <div class="section-card youth">
+                <div class="section-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>قسم الشباب</h3>
+                <p>أجواء شبابية وطاولات جماعية</p>
+                <p>ألعاب ترفيهية وتلفزيونات</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation -->
+    <section id="reservation" class="container">
+        <div class="reservation-form">
+            <h2 style="color: var(--primary); margin-bottom: 30px; text-align: center;">حجز طاولة</h2>
+            
+            <form id="reservationForm">
+                <div class="form-group">
+                    <label for="name"><i class="fas fa-user"></i> الاسم الكامل</label>
+                    <input type="text" id="name" required placeholder="أدخل اسمك الكامل">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone"><i class="fas fa-phone"></i> رقم الهاتف</label>
+                    <input type="tel" id="phone" required placeholder="مثال: 0990123456">
+                </div>
+                
+                <div class="form-group">
+                    <label for="date"><i class="fas fa-calendar"></i> التاريخ</label>
+                    <input type="date" id="date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="time"><i class="fas fa-clock"></i> الوقت</label>
+                    <select id="time" required>
+                        <option value="">اختر الوقت</option>
+                        <option value="08:00">8:00 صباحاً</option>
+                        <option value="10:00">10:00 صباحاً</option>
+                        <option value="12:00">12:00 ظهراً</option>
+                        <option value="14:00">2:00 ظهراً</option>
+                        <option value="16:00">4:00 عصراً</option>
+                        <option value="18:00">6:00 مساءً</option>
+                        <option value="20:00">8:00 مساءً</option>
+                        <option value="22:00">10:00 مساءً</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="branch"><i class="fas fa-map-marker-alt"></i> الفرع</label>
+                    <select id="branch" required>
+                        <option value="">اختر الفرع</option>
+                        <option value="فرع جسر الحديد">فرع جسر الحديد</option>
+                        <option value="فرع طريق M4">فرع طريق M4</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="section"><i class="fas fa-users"></i> القسم</label>
+                    <select id="section" required>
+                        <option value="">اختر القسم</option>
+                        <option value="قسم النساء">قسم النساء</option>
+                        <option value="قسم العائلات">قسم العائلات</option>
+                        <option value="قسم الشباب">قسم الشباب</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="guests"><i class="fas fa-user-friends"></i> عدد الأشخاص</label>
+                    <select id="guests" required>
+                        <option value="1">1 شخص</option>
+                        <option value="2">2 أشخاص</option>
+                        <option value="3">3 أشخاص</option>
+                        <option value="4">4 أشخاص</option>
+                        <option value="5">5 أشخاص</option>
+                        <option value="6">6 أشخاص</option>
+                        <option value="7+">7+ أشخاص</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-check-circle"></i> تأكيد الحجز
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 style="color: var(--gold); margin-bottom: 20px;">RUNIVO CAFE</h3>
+                    <p> أفضل تجربة مقهى في ادلب / اريحا </p>
+                </div>
+                
+                <div>
+                    <h3 style="color: var(--gold); margin-bottom: 20px;">اتصل بنا</h3>
+                    <div class="footer-links">
+                        <a href="tel:0990123456"><i class="fas fa-phone"></i> 0990 123 456</a>
+                        <a href="tel:0990987654"><i class="fas fa-phone"></i> 0990 987 654</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="color: var(--gold); margin-bottom: 20px;">تابعنا</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2024 RUNIVO CAFE. جميع الحقوق محفوظة.     تم تطوير وبرمجة هذا الويب بواسطة Adlep X</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Data
+        const menuData = {
+            "cold": [
+                { name: "JACK Wrestler (أحمر)", price: "4000", image: "cold1", flavors: "" },
+                { name: "Monster (أخضر)", price: "4000", image: "cold2", flavors: "" },
+                { name: "Red Bull", price: "3000", image: "cold3", flavors: "" },
+                { name: "بيبسي", price: "1500", image: "cold4", flavors: "" },
+                { name: "سفن اب 7Up", price: "1500", image: "cold5", flavors: "" },
+                { name: "كوكاكولا", price: "1500", image: "cold6", flavors: "" },
+                { name: "ميرندا برتقال", price: "1500", image: "cold7", flavors: "" },
+                { name: "ميرندا تفاح", price: "1500", image: "cold8", flavors: "" },
+                { name: "كينزا", price: "2000", image: "cold9", flavors: "كل النكهات" },
+                { name: "بربيكان", price: "2500", image: "cold10", flavors: "جميع النكهات" },
+                { name: "قهوة باردة", price: "3000", image: "cold11", flavors: "" },
+                { name: "عصير راني", price: "2000", image: "cold12", flavors: "حبيبات / سادة" },
+                { name: "XXXL", price: "3500", image: "cold13", flavors: "" }
+            ],
+            "hot": [
+                { name: "1×3", price: "2500", image: "hot1", flavors: "" },
+                { name: "نسكافيه", price: "2000", image: "hot2", flavors: "" },
+                { name: "كابتشينو", price: "3000", image: "hot3", flavors: "" },
+                { name: "شاي عربي", price: "1500", image: "hot4", flavors: "" },
+                { name: "شاي كرك", price: "2000", image: "hot5", flavors: "" },
+                { name: "قهوة سينغل", price: "2500", image: "hot6", flavors: "" },
+                { name: "قهوة دبل", price: "3000", image: "hot7", flavors: "" }
+            ],
+            "desserts": [
+                { name: "بان كيك", price: "4000", image: "dessert1", flavors: "" },
+                { name: "ميني كيك", price: "3500", image: "dessert2", flavors: "" },
+                { name: "كريب", price: "3000", image: "dessert3", flavors: "" },
+                { name: "كنافة", price: "4500", image: "dessert4", flavors: "" },
+                { name: "بقلاوة", price: "4000", image: "dessert5", flavors: "" }
+            ],
+            "milkshake": [
+                { name: "فانيلا", price: "3500", image: "milkshake1", flavors: "" },
+                { name: "شوكولاتة", price: "3500", image: "milkshake2", flavors: "" },
+                { name: "فراولة", price: "3500", image: "milkshake3", flavors: "" }
+            ],
+            "cocktails": [
+                { name: "موز وحليب", price: "3000", image: "cocktail1", flavors: "" },
+                { name: "موز وحليب وشوكولاتة", price: "3500", image: "cocktail2", flavors: "" },
+                { name: "فراولة وحليب", price: "3000", image: "cocktail3", flavors: "" },
+                { name: "كوكتيل موز وفراولة", price: "4000", image: "cocktail4", flavors: "" },
+                { name: "كوكتيل فواكه مشكلة", price: "4500", image: "cocktail5", flavors: "" }
+            ],
+            "argila": [
+                { name: "أركيلة بولو", price: "8000", image: "argila1", flavors: "" },
+                { name: "أركيلة فاخر", price: "10000", image: "argila2", flavors: "" },
+                { name: "أركيلة نخلة", price: "9000", image: "argila3", flavors: "" },
+                { name: "أركيلة ليدي", price: "7500", image: "argila4", flavors: "" }
+            ]
+        };
+
+        // Load Menu
+        function loadMenu(category = 'all') {
+            const container = document.getElementById('menuContainer');
+            container.innerHTML = '';
+            
+            if (category === 'all') {
+                for (const cat in menuData) {
+                    menuData[cat].forEach(item => {
+                        container.innerHTML += createMenuItem(item, cat);
+                    });
+                }
+            } else if (menuData[category]) {
+                menuData[category].forEach(item => {
+                    container.innerHTML += createMenuItem(item, category);
+                });
+            }
+        }
+
+        function createMenuItem(item, category) {
+            const categoryIcons = {
+                'cold': 'fas fa-glass-whiskey',
+                'hot': 'fas fa-mug-hot',
+                'desserts': 'fas fa-birthday-cake',
+                'milkshake': 'fas fa-blender',
+                'cocktails': 'fas fa-cocktail',
+                'argila': 'fas fa-smoking'
+            };
+            
+            // Different background colors for different categories
+            const bgColors = {
+                'cold': '#e3f2fd',
+                'hot': '#ffebee',
+                'desserts': '#fff3e0',
+                'milkshake': '#f3e5f5',
+                'cocktails': '#e8f5e9',
+                'argila': '#fce4ec'
+            };
+            
+            return `
+                <div class="menu-item" data-category="${category}">
+                    <div class="item-image" style="background-color: ${bgColors[category] || '#f5f5f5'};">
+                        <div style="display: flex; align-items: center; justify-content: center; height: 100%; font-size: 3rem; color: ${category === 'cold' ? '#2196f3' : category === 'hot' ? '#f44336' : category === 'desserts' ? '#ff9800' : '#9c27b0'}">
+                            <i class="${categoryIcons[category]}"></i>
+                        </div>
+                    </div>
+                    <div class="item-content">
+                        <div class="item-header">
+                            <h3 class="item-name">${item.name}</h3>
+                            <span class="item-price">${item.price} ل.س</span>
+                        </div>
+                        ${item.flavors ? `<div class="item-flavors">${item.flavors}</div>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadMenu();
+            
+            // Category filtering
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    loadMenu(this.dataset.category);
+                });
+            });
+            
+            // Mobile menu
+            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+                document.getElementById('mainNav').classList.toggle('active');
+            });
+            
+            // Reservation form
+            document.getElementById('reservationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const reservation = {
+                    name: document.getElementById('name').value,
+                    phone: document.getElementById('phone').value,
+                    date: document.getElementById('date').value,
+                    time: document.getElementById('time').value,
+                    branch: document.getElementById('branch').value,
+                    section: document.getElementById('section').value,
+                    guests: document.getElementById('guests').value
+                };
+                
+                // Save to localStorage
+                let reservations = JSON.parse(localStorage.getItem('runivo_reservations') || '[]');
+                reservations.push({
+                    ...reservation,
+                    id: Date.now(),
+                    status: 'pending'
+                });
+                localStorage.setItem('runivo_reservations', JSON.stringify(reservations));
+                
+                alert('تم تأكيد حجزك بنجاح! سنتصل بك قريباً للتأكيد النهائي.\nرقم الحجز: ' + Date.now());
+                this.reset();
+                
+                // Set min date to today
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('date').min = today;
+            });
+            
+            // Set min date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('date').min = today;
+            
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        document.getElementById('mainNav').classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
